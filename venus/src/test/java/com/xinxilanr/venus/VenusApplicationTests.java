@@ -1,4 +1,4 @@
-package com.xinxilanr;
+package com.xinxilanr.venus;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
