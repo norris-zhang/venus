@@ -4,3 +4,4 @@
 libraries/EclipseLink 2.5.2/
 
 .recommenders/
+parent/web/*.log
