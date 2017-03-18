@@ -1,10 +1,17 @@
 package com.xinxilanr.venus.datamodel;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the users database table.
@@ -13,10 +20,11 @@ import java.util.List;
 @Entity
 @Table(name="users")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
-public class User implements Serializable {
+public class User implements BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=IDENTITY)
 	private Long id;
 
 	private Boolean active;
@@ -64,6 +72,7 @@ public class User implements Serializable {
 	public User() {
 	}
 
+	@Override
 	public Long getId() {
 		return this.id;
 	}

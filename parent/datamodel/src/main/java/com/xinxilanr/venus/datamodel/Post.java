@@ -1,8 +1,17 @@
 package com.xinxilanr.venus.datamodel;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -12,10 +21,11 @@ import java.sql.Timestamp;
 @Entity
 @Table(name="posts")
 @NamedQuery(name="Post.findAll", query="SELECT p FROM Post p")
-public class Post implements Serializable {
+public class Post implements BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=IDENTITY)
 	private Long id;
 
 	private String address;
@@ -79,6 +89,7 @@ public class Post implements Serializable {
 	public Post() {
 	}
 
+	@Override
 	public Long getId() {
 		return this.id;
 	}
