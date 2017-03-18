@@ -8,5 +8,5 @@ postgres=# create database venusdb owner venus;
 postgres=# \q
 
 ### start up project
-$ cd parent/web
+$ cd parent/web  
 $ mvn spring-boot:run
