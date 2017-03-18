@@ -2,6 +2,7 @@
 
 ### Database setup
 Install PostgreSQL database.
+
 $ psql postgres  
 postgres=# create user venus with password ‘123321’;  
 postgres=# create database venusdb owner venus;  
