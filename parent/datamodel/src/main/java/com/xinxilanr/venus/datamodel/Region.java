@@ -1,8 +1,18 @@
 package com.xinxilanr.venus.datamodel;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 /**
@@ -12,10 +22,11 @@ import java.util.List;
 @Entity
 @Table(name="regions")
 @NamedQuery(name="Region.findAll", query="SELECT r FROM Region r")
-public class Region implements Serializable {
+public class Region implements BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=IDENTITY)
 	private Long id;
 
 	private String abbreviation;
@@ -27,6 +38,7 @@ public class Region implements Serializable {
 
 	private String name;
 
+	@Column(name="\"order\"")
 	private Integer order;
 
 	//bi-directional many-to-one association to Post
@@ -45,6 +57,7 @@ public class Region implements Serializable {
 	public Region() {
 	}
 
+	@Override
 	public Long getId() {
 		return this.id;
 	}

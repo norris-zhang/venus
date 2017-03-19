@@ -10,7 +10,7 @@ CREATE TABLE public.users
     twitter character varying(100),
     linkedin character varying(500),
     personal_url character varying(500),
-    active bit NOT NULL,
+    active boolean NOT NULL,
     status integer NOT NULL,
     created_at timestamp with time zone NOT NULL,
     create_ip character varying(20),

@@ -1,8 +1,18 @@
 package com.xinxilanr.venus.datamodel;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 /**
@@ -12,26 +22,28 @@ import java.util.List;
 @Entity
 @Table(name="categories")
 @NamedQuery(name="Category.findAll", query="SELECT c FROM Category c")
-public class Category implements Serializable {
+public class Category implements BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=IDENTITY)
 	private Long id;
 
 	private String code;
 
 	private String name;
 
+	@Column(name = "\"order\"")
 	private Integer order;
 
 	//bi-directional many-to-one association to Category
 	@ManyToOne
 	@JoinColumn(name="parent_id")
-	private Category category;
+	private Category parent;
 
 	//bi-directional many-to-one association to Category
-	@OneToMany(mappedBy="category")
-	private List<Category> categories;
+	@OneToMany(mappedBy="parent")
+	private List<Category> children;
 
 	//bi-directional many-to-one association to Post
 	@OneToMany(mappedBy="category")
@@ -40,74 +52,82 @@ public class Category implements Serializable {
 	public Category() {
 	}
 
+	@Override
 	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Long id) {
+	public Category setId(Long id) {
 		this.id = id;
+		return this;
 	}
 
 	public String getCode() {
 		return this.code;
 	}
 
-	public void setCode(String code) {
+	public Category setCode(String code) {
 		this.code = code;
+		return this;
 	}
 
 	public String getName() {
 		return this.name;
 	}
 
-	public void setName(String name) {
+	public Category setName(String name) {
 		this.name = name;
+		return this;
 	}
 
 	public Integer getOrder() {
 		return this.order;
 	}
 
-	public void setOrder(Integer order) {
+	public Category setOrder(Integer order) {
 		this.order = order;
+		return this;
 	}
 
-	public Category getCategory() {
-		return this.category;
+	public Category getParent() {
+		return this.parent;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
+	public Category setParent(Category parent) {
+		this.parent = parent;
+		return this;
 	}
 
-	public List<Category> getCategories() {
-		return this.categories;
+	public List<Category> getChildren() {
+		return this.children;
 	}
 
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
+	public Category setChildren(List<Category> children) {
+		this.children = children;
+		return this;
 	}
 
-	public Category addCategory(Category category) {
-		getCategories().add(category);
-		category.setCategory(this);
+	public Category addChild(Category child) {
+		getChildren().add(child);
+		child.setParent(this);
 
-		return category;
+		return child;
 	}
 
-	public Category removeCategory(Category category) {
-		getCategories().remove(category);
-		category.setCategory(null);
+	public Category removeChild(Category child) {
+		getChildren().remove(child);
+		child.setParent(null);
 
-		return category;
+		return child;
 	}
 
 	public List<Post> getPosts() {
 		return this.posts;
 	}
 
-	public void setPosts(List<Post> posts) {
+	public Category setPosts(List<Post> posts) {
 		this.posts = posts;
+		return this;
 	}
 
 	public Post addPost(Post post) {
