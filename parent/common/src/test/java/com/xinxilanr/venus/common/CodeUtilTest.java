@@ -1,6 +1,9 @@
 package com.xinxilanr.venus.common;
 
 import static org.junit.Assert.*;
+
+import java.io.UnsupportedEncodingException;
+
 import static org.hamcrest.core.IsEqual.equalTo;
 
 import org.junit.After;
@@ -33,4 +36,8 @@ public class CodeUtilTest {
 		assertThat(sha256, equalTo("a320480f534776bddb5cdb54b1e93d210a3c7d199e80a23c1b2178497b184c76"));
 	}
 
+	@Test(expected = UnsupportedEncodingException.class)
+	public void sha256WithUnsupportedCharsetNameShouldThrowException() throws UnsupportedEncodingException {
+		CodeUtil.sha256("123321", "IAmNotSupported");
+	}
 }
