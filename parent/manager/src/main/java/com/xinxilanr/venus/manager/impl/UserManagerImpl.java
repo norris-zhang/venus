@@ -32,7 +32,7 @@ public class UserManagerImpl implements UserManager {
 	public void register(RegisterDto dto) {
 		User user = new User();
 		user.setEmail(dto.getEmail());
-		user.setPassword(CodeUtil.md5(dto.getPassword()));
+		user.setPassword(CodeUtil.sha256(dto.getPassword()));
 		user.setActive(false);
 		user.setStatus(UserStatus.INIT.getValue());
 		user.setCreatedAt(Timestamp.from(Instant.now()));

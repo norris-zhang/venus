@@ -10,4 +10,10 @@
 	</parent>
 	<artifactId>common</artifactId>
 	<name>common</name>
+	<dependencies>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+	</dependencies>
 </project>
