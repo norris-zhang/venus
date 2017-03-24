@@ -36,9 +36,9 @@ public class UserManagerImpl implements UserManager {
 		user.setActive(false);
 		user.setStatus(UserStatus.INIT.getValue());
 		user.setCreatedAt(Timestamp.from(Instant.now()));
+		user.setCreateIp(dto.getRemoteIp());
 		
 		userDao.insert(user);
 		
-		//TODO send email to user for activation.
 	}
 }
