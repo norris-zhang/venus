@@ -6,6 +6,8 @@ package com.xinxilanr.venus.web.controllers;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xinxilanr.venus.manager.ClusteredSession;
 import com.xinxilanr.venus.manager.UserManager;
 import com.xinxilanr.venus.manager.dto.RegisterDto;
 import com.xinxilanr.venus.service.HttpService;
@@ -40,10 +43,12 @@ public class UserController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	private UserManager userManager;
 	private HttpService httpService;
+	private ClusteredSession sessionRepo;
 	private RegisterFormValidator registerFormValidator;
-	public UserController(UserManager userManager, HttpService httpService, RegisterFormValidator registerFormValidator) {
+	public UserController(UserManager userManager, HttpService httpService, RegisterFormValidator registerFormValidator, ClusteredSession sessionRepo) {
 		this.userManager = userManager;
 		this.httpService = httpService;
+		this.sessionRepo = sessionRepo;
 		this.registerFormValidator = registerFormValidator;
 	}
 
@@ -81,6 +86,9 @@ public class UserController {
 	
 	@GetMapping("/activate")
 	public String activate() {
+		Map<String, Object> session = sessionRepo.getSession("sessionId");
+		session.put("aaa", 1);
+		sessionRepo.setSession("sessionId", session);
 		return "user/activation";
 	}
 	
