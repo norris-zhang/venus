@@ -1,6 +1,7 @@
 package com.xinxilanr.venus.datamodel;
 
 import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.CascadeType.ALL;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -11,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -68,6 +70,9 @@ public class User implements BaseEntity {
 	//bi-directional many-to-one association to Post
 	@OneToMany(mappedBy="user")
 	private List<Post> posts;
+
+	@OneToOne(mappedBy="user", cascade=ALL)
+	private Activate activate;
 
 	public User() {
 	}
@@ -231,4 +236,13 @@ public class User implements BaseEntity {
 		return post;
 	}
 
+	public Activate getActivate() {
+		return activate;
+	}
+
+	public void setActivate(Activate activate) {
+		this.activate = activate;
+	}
+
+	
 }

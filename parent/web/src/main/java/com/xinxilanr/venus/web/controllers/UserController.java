@@ -75,7 +75,8 @@ public class UserController {
 		}
 		logger.info("ip is " + HttpUtil.getRemoteIp(request));
 		userManager.register(new RegisterDto().setEmail(form.getEmail()).setPassword(form.getPassword()).setRemoteIp(HttpUtil.getRemoteIp(request)));
-		return "user/register_success";
+		
+		return "user/activation";
 	}
 	
 	@GetMapping("/activate")
