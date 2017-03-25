@@ -82,4 +82,9 @@ public class UserController {
 	public String activate() {
 		return "user/activation";
 	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "user/login";
+	}
 }
