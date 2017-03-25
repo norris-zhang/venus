@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xinxilanr.venus.common.CodeUtil;
 import com.xinxilanr.venus.dao.UserDao;
+import com.xinxilanr.venus.datamodel.Activate;
 import com.xinxilanr.venus.datamodel.User;
 import com.xinxilanr.venus.datamodel.enums.UserStatus;
 import com.xinxilanr.venus.manager.UserManager;
@@ -37,6 +38,13 @@ public class UserManagerImpl implements UserManager {
 		user.setStatus(UserStatus.INIT.getValue());
 		user.setCreatedAt(Timestamp.from(Instant.now()));
 		user.setCreateIp(dto.getRemoteIp());
+		
+		Activate activate = new Activate();
+		activate.setUser(user);
+		activate.setActivateCode(CodeUtil.randomString(8));
+		activate.setCreatedAt(Timestamp.from(Instant.now()));
+		
+		user.setActivate(activate);
 		
 		userDao.insert(user);
 		
