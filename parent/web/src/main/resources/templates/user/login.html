@@ -14,7 +14,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-
+<link rel="stylesheet" href="css/jqueryvalidate/screen.css"></link>
 <link rel="stylesheet" href="css/main.css"></link>
 </head>
 <body>
@@ -35,9 +35,9 @@
 	<div>用户登录</div>
 	<hr/>
 	<div>
-		<form action="#" method="post">
-			<div><label for="emailId">邮箱：</label><input type="text" name="email" id="emailId" placeholder="登录邮箱" style="width: 180px;"/></div>
-			<div><label for="passwordId">密码：</label><input type="text" name="password" id="passwordId" placeholder="登录密码" style="width: 180px;"/></div>
+		<form id="formId" action="#" method="post">
+			<div><label for="emailId">邮箱：</label><input type="email" name="email" id="emailId" placeholder="登录邮箱" style="width: 180px;"/></div>
+			<div><label for="passwordId">密码：</label><input type="password" name="password" id="passwordId" placeholder="登录密码" style="width: 180px;"/></div>
 			<div><input type="checkbox" name="rememberMe" id="rememberMeId"/><label for="rememberMeId">下次自动登录</label></div>
 			<div><button type="submit" class="btn btn-success">登录</button><button type="button" class="btn btn-xs btn-link">找回密码</button></div>
 			<div><button type="button" class="btn btn-xs btn-link" style="margin-left: 168px;">免费注册</button></div>
@@ -52,5 +52,32 @@
 <script src="js/jquery-3.2.0.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#formId").validate({
+		rules: {
+			email: {
+				required: true,
+				email: true
+			},
+			password: {
+				required: true,
+				minlength: 6
+			}
+		},
+		messages: {
+			email: {
+				required: "请输入login email",
+				email: "email格式不正确"
+			},
+			password: {
+				required: "请输入密码",
+				minlength: "密码最少6位"
+			}
+		}
+	});
+});
+</script>
 </body>
 </html>
