@@ -5,7 +5,8 @@ package com.xinxilanr.venus.common;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
-import java.util.Random;
+import java.security.SecureRandom;
+import java.util.UUID;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -34,13 +35,21 @@ public class CodeUtil {
 	}
 
 	public static String randomString(int length) {
-		Random random = new Random();
+		SecureRandom random = new SecureRandom();
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < length; i++) {
 			int nextInt = random.nextInt(LETTER_NUMBER.length);
 			sb.append(LETTER_NUMBER[nextInt]);
 		}
 		return sb.toString();
+	}
+	
+	public static String randomUUID() {
+		return UUID.randomUUID().toString();
+	}
+
+	public static String generateToken() {
+		return randomUUID();
 	}
 
 }
