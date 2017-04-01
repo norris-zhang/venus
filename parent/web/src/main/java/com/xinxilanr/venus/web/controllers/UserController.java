@@ -9,6 +9,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -29,6 +30,7 @@ import com.xinxilanr.venus.manager.dto.RegisterDto;
 import com.xinxilanr.venus.service.HttpService;
 import com.xinxilanr.venus.web.forms.RegisterForm;
 import com.xinxilanr.venus.web.forms.validators.RegisterFormValidator;
+import com.xinxilanr.venus.web.utils.CookieHandler;
 import com.xinxilanr.venus.web.utils.HttpUtil;
 
 
@@ -45,7 +47,10 @@ public class UserController {
 	private HttpService httpService;
 	private ClusteredSession sessionRepo;
 	private RegisterFormValidator registerFormValidator;
-	public UserController(UserManager userManager, HttpService httpService, RegisterFormValidator registerFormValidator, ClusteredSession sessionRepo) {
+	public UserController(UserManager userManager,
+						  HttpService httpService,
+						  RegisterFormValidator registerFormValidator,
+						  ClusteredSession sessionRepo) {
 		this.userManager = userManager;
 		this.httpService = httpService;
 		this.sessionRepo = sessionRepo;
@@ -79,7 +84,10 @@ public class UserController {
 			return "user/register";
 		}
 		logger.info("ip is " + HttpUtil.getRemoteIp(request));
-		userManager.register(new RegisterDto().setEmail(form.getEmail()).setPassword(form.getPassword()).setRemoteIp(HttpUtil.getRemoteIp(request)));
+		userManager.register(new RegisterDto()
+								.setEmail(form.getEmail())
+								.setPassword(form.getPassword())
+								.setRemoteIp(HttpUtil.getRemoteIp(request)));
 		
 		return "user/activation";
 	}
@@ -93,7 +101,12 @@ public class UserController {
 	}
 	
 	@GetMapping("/login")
-	public String login() {
+	public String login(HttpServletRequest request, HttpServletResponse response) {
+		String sessionId = new CookieHandler(request, response).getClusteredSessionId();
+		Map<String, Object> session = sessionRepo.getSession(sessionId);
+		logger.info("Norris: userName = " + session.get("userName"));
+		session.put("userName", "Norris");
+		sessionRepo.setSession(sessionId, session);
 		return "user/login";
 	}
 }

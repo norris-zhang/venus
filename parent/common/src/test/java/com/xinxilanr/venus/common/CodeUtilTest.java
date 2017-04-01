@@ -1,10 +1,10 @@
 package com.xinxilanr.venus.common;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.core.IsNot.not;
 
 import java.io.UnsupportedEncodingException;
-
-import static org.hamcrest.core.IsEqual.equalTo;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -56,6 +56,24 @@ public class CodeUtilTest {
 		String randomString = CodeUtil.randomString(8);
 		for (int i = 0; i < randomString.length(); i++) {
 			assertThat(randomString.charAt(i), isContainedIn(checkString));
+		}
+	}
+
+	@Test
+	public void randomUUIDShouldReturnRandomDifferentStringsEachTime() {
+		String first = CodeUtil.randomUUID();
+		String second = CodeUtil.randomUUID();
+		assertThat(first.equals(second), not(true));
+	}
+
+	@Test
+	public void generateTokenShouldReturnRandomHexString() {
+		String checkString = "0123456789abcdef-";
+		String token = CodeUtil.generateToken();
+		System.out.println(token);
+		assertThat(token.length(), equalTo(36));
+		for (int i = 0; i < token.length(); i++) {
+			assertThat(token.charAt(i), isContainedIn(checkString));
 		}
 	}
 
