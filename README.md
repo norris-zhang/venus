@@ -51,7 +51,7 @@ Start a terminal. On windows, Git Bash is recommended.
 $ git clone git@github.com:norris-zhang/venus.git
 
 ## Compile projects
-$ cd parent/
+$ cd parent/  
 $ mvn clean install
 
 ## Start project
