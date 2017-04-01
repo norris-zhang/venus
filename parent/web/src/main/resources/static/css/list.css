@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+body {
+	background-image: url("../images/light-texture.jpg");
+}
+
+.post-item {
+	padding: 10px;
+	cursor: pointer;
+	background-color: yellow;
+	margin: 10px;
+	
+	
+}
+.post-item img {
+	width: 64%;
+	margin: 30px auto 0 auto;
+	display: block;
+}
+.post-item .post-item-title {
+	text-align: center;
+	margin-top: 20px;
+	font-weight: bold;
+}
+.post-item .post-item-attribute {
+	text-align: center;
+	margin-top: 20px;
+}
+.post-item .post-item-price {
+	text-align: center;
+	color: red;
+	font-size: 30px;
+}
+.post-item .post-item-price .price-unit {
+	color: gray;
+	font-size: 10px;
+}
