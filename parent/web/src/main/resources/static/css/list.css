@@ -34,3 +34,58 @@ body {
 	color: gray;
 	font-size: 10px;
 }
+.pagerframe {
+	text-align: center;
+	padding: 39px 0 50px;
+}
+.pager {
+	display: block;
+	text-align: center;
+}
+.pager .prv {
+	padding: 0 19px 0 24px;
+	background: url("../images/prevIcon.png") 15px center no-repeat;
+}
+.pager a,.pager strong {
+	height:30px;
+	display:inline-block;
+	padding:0 10px;
+	margin-left:-4px;
+	position:relative;
+	z-index:1;
+	color:#585858;
+	border:1px solid #c6c7c8;
+	font:700 14px/30px "Hiragino Sans GB","Microsoft YaHei";
+	vertical-align:middle
+}
+.pager a:hover {
+	color:#e50;
+	text-decoration: none;
+}
+.pager .next,.pager .prv {
+	font-weight:400;
+	font-size:12px;
+}
+.pager .next {
+	padding:0 24px 0 19px;
+	background:url(../images/nextIcon.png) 59px center no-repeat;
+}
+.pager strong {
+	color:#fff;
+	z-index:2;
+	font-size:14px;
+	background:#f60;
+	border:1px solid #f60;
+}
+.filter {
+	
+}
+.logo-row {
+	position: relative;
+}
+.search-bar {
+	position: absolute;
+	top: 30px;
+	left: 360px;
+	width: 360px;
+}
