@@ -28,11 +28,47 @@
 	</div>
 </div>
 <div class="container">
-	<div>
+	<div class="logo-row">
 		<img alt="" src="images/logo.png" />
+		<div class="search-bar">
+			<form action="#" method="get">
+				<div class="input-group">
+					<input type="text" name="keyword" placeholder="Takapuna 三室一卫" class="form-control"/>
+					<div class="input-group-btn">
+						<button type="submit" class="btn btn-danger">搜 <span class="glyphicon glyphicon-search"></span></button>
+					</div>
+				</div>
+			</form>
+		</div>
 		<button type="button" class="btn btn-lg btn-danger" style="float: right; margin-top: 20px;">发布信息</button>
 	</div>
 	<div>房产 - 租房</div>
+	<hr/>
+	<div class="filter">
+		<label>区域:</label>
+		<select>
+			<option>全奥克兰(Auckland)</option>
+			<option>奥克兰市(Auckland City)</option>
+			<option>北岸市(Northshore City)</option>
+			<option>豪拉基湾高尔夫群岛(Hauraki Golf Islands)</option>
+			<option>曼努卡市(Manukau City)</option>
+			<option>帕帕库拉(Papakura)</option>
+			<option>怀塔克雷市(Waitakere City)</option>
+			<option>罗德尼(Rodney)</option>
+			<option>其它</option>
+		</select>
+		<select>
+			<option>市中心(Auckland Central)</option>
+			<option>埃文代尔(Avondale)</option>
+			<option>布洛克豪斯湾(Blockhouse Bay)</option>
+			<option>易登露台(Eden Terrace)</option>
+			<option>埃乐斯利(Ellerslie)</option>
+			<option>爱普森(Epsom)</option>
+			<option>富丽门湾(Freemans Bay)</option>
+			<option>格林因尼斯(Glen Innes)</option>
+			<option>其它</option>
+		</select>
+	</div>
 	<hr/>
 	<div>
 		<div class="row">
@@ -120,6 +156,35 @@
 					<img alt="" src="images/pin-3.png" style="width: 28px; position: absolute; top: 0px; left: 50px;"/>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="pagerframe">
+		<div class="pager">
+			<a class="prv" href="#">
+				<span>上一页</span>
+			</a>
+			<a href="#">
+				<span>1</span>
+			</a>
+			<strong><span>2</span></strong>
+			<a href="#">
+				<span>3</span>
+			</a>
+			<a href="#">
+				<span>4</span>
+			</a>
+			<a href="#">
+				<span>5</span>
+			</a>
+			<a href="#">
+				<span>6</span>
+			</a>
+			<a href="#">
+				<span>7</span>
+			</a>
+			<a class="next" href="#">
+				<span>下一页</span>
+			</a>
 		</div>
 	</div>
 </div>
