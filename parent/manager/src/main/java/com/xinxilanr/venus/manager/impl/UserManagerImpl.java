@@ -49,4 +49,9 @@ public class UserManagerImpl implements UserManager {
 		userDao.insert(user);
 		
 	}
+	@Override
+	public boolean isDuplicateEmail(String email) {
+		User user = userDao.getByEmail(email);
+		return user != null;
+	}
 }

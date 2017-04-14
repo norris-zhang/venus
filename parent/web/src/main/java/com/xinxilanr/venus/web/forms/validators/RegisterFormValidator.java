@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import com.xinxilanr.venus.manager.UserManager;
 import com.xinxilanr.venus.web.forms.RegisterForm;
 
 /**
@@ -19,6 +20,10 @@ import com.xinxilanr.venus.web.forms.RegisterForm;
 public class RegisterFormValidator implements Validator {
 	@SuppressWarnings("unused")
 	private Logger logger = LoggerFactory.getLogger(RegisterFormValidator.class);
+	private UserManager userManager = null;
+	public RegisterFormValidator(UserManager userManager) {
+		this.userManager = userManager;
+	}
 	/* (non-Javadoc)
 	 * @see org.springframework.validation.Validator#supports(java.lang.Class)
 	 */
@@ -35,7 +40,13 @@ public class RegisterFormValidator implements Validator {
 		RegisterForm form = (RegisterForm)target;
 		if (! form.getPassword().equals(form.getPasswordRepeat())) {
 			errors.rejectValue("passwordRepeat", "error.register.pwddiff");
+		} else if (isDuplicateEmail(form.getEmail())) {
+			errors.rejectValue("email", "error.register.duplicate");
 		}
+	}
+
+	private boolean isDuplicateEmail(String email) {
+		return userManager.isDuplicateEmail(email);
 	}
 
 }

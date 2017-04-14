@@ -78,7 +78,7 @@ public class UserController {
 		if (result.hasErrors()) {
 			return "user/register";
 		}
-		
+
 		if (! httpService.verifyRecaptcha(recaptchaResponse)) {
 			logger.warn("reCaptcha unsuccessful");
 			return "user/register";
