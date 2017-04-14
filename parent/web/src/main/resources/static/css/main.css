@@ -6,6 +6,7 @@
 body {
   font-family: Georgia, "Times New Roman", Times, serif;
   color: #555;
+  background-image: url("../images/light-texture.jpg");
 }
 
 h1, .h1,
@@ -174,3 +175,13 @@ h6, .h6 {
 	cursor: pointer;
 	color: white;
 }
+.logo-row {
+	position: relative;
+}
+.search-bar {
+	position: absolute;
+	top: 30px;
+	left: 360px;
+	width: 360px;
+}
+

@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8"></meta>
-<title>Insert title here</title>
+<th:block th:include="segments/layout :: head(title='用户注册')"></th:block>
 </head>
 <body>
-<h2 data-th-text="#{user.register.header}">用户注册页</h2>
-<form action="#" data-th-action="@{/register}" method="post" id="regForm" data-th-object="${form}">
-	<fieldset>
-	<ul>
-		<li>
-			<label for="emailId">邮箱</label><input type="email" name="email" id="emailId" data-th-field="*{email}"/>
-			<span data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}">email error</span>
-		</li>
-		<li><label for="passwordId">密码</label><input type="password" name="password" id="passwordId"/></li>
-		<li>
-			<label for="passwordRepeatId">重复密码</label><input type="password" name="passwordRepeat" id="passwordRepeatId"/>
-			<span data-th-if="${#fields.hasErrors('passwordRepeat')}" data-th-errors="*{passwordRepeat}">password error</span>
-		</li>
-		<li><button
-class="g-recaptcha"
-data-sitekey="6LcqfRkUAAAAAA_jt2yARD3nPL7nYr-p7Py860eM"
-data-callback="onSubmit">
-Submit
-</button></li>
-	</ul>
-		
-	</fieldset>
-</form>
+<div class="blog-masthead light-font-color" data-th-replace="segments/layout :: header"></div>
+<div class="container">
+	<div class="logo-row" data-th-replace="segments/layout :: logoSec"></div>
+	<div>用户注册</div>
+	<hr/>
+	<form action="#" data-th-action="@{/register}" method="post" id="regForm" data-th-object="${form}">
+		<fieldset>
+		<ul>
+			<li>
+				<label for="emailId">邮箱</label><input type="email" name="email" id="emailId" data-th-field="*{email}"/>
+				<span data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}">email error</span>
+			</li>
+			<li><label for="passwordId">密码</label><input type="password" name="password" id="passwordId"/></li>
+			<li>
+				<label for="passwordRepeatId">重复密码</label><input type="password" name="passwordRepeat" id="passwordRepeatId"/>
+				<span data-th-if="${#fields.hasErrors('passwordRepeat')}" data-th-errors="*{passwordRepeat}">password error</span>
+			</li>
+			<li>
+				<button class="g-recaptcha" data-sitekey="6LcqfRkUAAAAAA_jt2yARD3nPL7nYr-p7Py860eM" data-callback="onSubmit">Submit</button>
+			</li>
+		</ul>
+			
+		</fieldset>
+	</form>
+</div>
+<div class="blog-footer" data-th-replace="segments/layout :: footer"></div>
+<th:block th:include="segments/layout :: commonJs"></th:block>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script type="text/javascript">
 function onSubmit(token) {

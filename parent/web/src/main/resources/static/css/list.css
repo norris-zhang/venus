@@ -1,8 +1,4 @@
 @CHARSET "UTF-8";
-body {
-	background-image: url("../images/light-texture.jpg");
-}
-
 .post-item {
 	padding: 10px;
 	cursor: pointer;
@@ -79,13 +75,4 @@ body {
 }
 .filter {
 	
-}
-.logo-row {
-	position: relative;
-}
-.search-bar {
-	position: absolute;
-	top: 30px;
-	left: 360px;
-	width: 360px;
 }
