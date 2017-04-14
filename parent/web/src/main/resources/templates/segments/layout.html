@@ -1,13 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-<th:block th:include="segments/layout :: head(title='信息栏儿1')"></th:block>
-<link rel="stylesheet" href="css/list.css"/>
+<th:block th:fragment="head(title)">
+<meta charset="UTF-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<title th:text="${title}">insert title</title>
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" href="css/main.css"></link>
+</th:block>
 </head>
 <body>
-<div class="blog-masthead light-font-color" data-th-replace="segments/layout :: header"></div>
+<div class="blog-masthead light-font-color" data-th-fragment="header">
+	<div class="container">
+		<nav class="blog-nav">
+			<span>奥克兰<a href="#">[切换城市]</a></span>
+			<span style="float:right;"><a href="#">登录</a> / <a href="#">注册</a></span>
+			<span style="float:right;">欢迎您 Norris Zhang</span>
+		</nav>
+	</div>
+</div>
 <div class="container">
-	<div class="logo-row" data-th-replace="segments/layout :: logoSec"></div>
+	<div class="logo-row" data-th-fragment="logoSec">
+		<img alt="" src="images/logo.png" />
+		<div class="search-bar">
+			<form action="#" method="get">
+				<div class="input-group">
+					<input type="text" name="keyword" placeholder="Takapuna 三室一卫" class="form-control"/>
+					<div class="input-group-btn">
+						<button type="submit" class="btn btn-danger">搜 <span class="glyphicon glyphicon-search"></span></button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<button type="button" class="btn btn-lg btn-danger" style="float: right; margin-top: 20px;">发布信息</button>
+	</div>
 	<div>房产 - 租房</div>
 	<hr/>
 	<div class="filter">
@@ -154,7 +189,15 @@
 		</div>
 	</div>
 </div>
-<div class="blog-footer" data-th-replace="segments/layout :: footer"></div>
-<th:block th:include="segments/layout :: commonJs"></th:block>
+<div class="blog-footer" data-th-fragment="footer">
+	<span>&copy; 2017 xinxilanr.com</span>
+	<span><a href="#">关于我们</a> | <a href="#">联系我们</a> | <a href="#">加入我们</a> | <a href="#">帮助中心</a></span>
+</div>
+<th:block th:fragment="commonJs">
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-3.2.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+</th:block>
 </body>
 </html>

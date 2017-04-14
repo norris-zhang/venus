@@ -1,28 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8"></meta>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
-<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-<title>Insert title here</title>
-<!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet"/>
-
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<th:block th:include="segments/layout :: head(title='用户注册')"></th:block>
 </head>
 <body>
-<h1>信息栏儿</h1>
-
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery-3.2.0.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+<div class="blog-masthead light-font-color" data-th-replace="segments/layout :: header"></div>
+<div class="container">
+	<div class="logo-row" data-th-replace="segments/layout :: logoSec"></div>
+	<div>用户注册</div>
+	<hr/>
+</div>
+<div class="blog-footer" data-th-replace="segments/layout :: footer"></div>
+<th:block th:include="segments/layout :: commonJs"></th:block>
 </body>
 </html>

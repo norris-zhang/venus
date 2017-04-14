@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xinxilanr.venus.manager.ClusteredSession;
 import com.xinxilanr.venus.manager.UserManager;
@@ -58,7 +57,6 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/", method=GET)
-	@ResponseBody
 	public String home() {
 		return "index";
 	}
