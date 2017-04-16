@@ -17,6 +17,8 @@ import com.xinxilanr.venus.datamodel.User;
 import com.xinxilanr.venus.datamodel.enums.UserStatus;
 import com.xinxilanr.venus.manager.UserManager;
 import com.xinxilanr.venus.manager.dto.RegisterDto;
+import com.xinxilanr.venus.manager.exceptions.LoginNoIdException;
+import com.xinxilanr.venus.manager.exceptions.WrongPasswordException;
 
 /**
  * @author norris
@@ -53,5 +55,24 @@ public class UserManagerImpl implements UserManager {
 	public boolean isDuplicateEmail(String email) {
 		User user = userDao.getByEmail(email);
 		return user != null;
+	}
+	@Override
+	public User login(String email, String password) throws LoginNoIdException, WrongPasswordException {
+		User userByEmail = userDao.getByEmail(email);
+		if (userByEmail == null) {
+			throw new LoginNoIdException();
+		}
+		if (!userByEmail.getPassword().equals(CodeUtil.sha256(password))) {
+			throw new WrongPasswordException();
+		}
+		return userByEmail;
+	}
+	@Override
+	public void updateUserLoginTime(Long id, String remoteIp) {
+		User user = (User)userDao.get(User.class, id);
+		user.setLastLoginAt(Timestamp.from(Instant.now()));
+		user.setUpdatedAt(Timestamp.from(Instant.now()));
+		user.setUpdateIp(remoteIp);
+		userDao.update(user);
 	}
 }

@@ -38,16 +38,19 @@ public class DaoImpl implements Dao {
 	public void insert(BaseEntity entity) {
 		getSession().save(entity);
 	}
+	@Override
 	public int delete(BaseEntity c) {
 		Session session = getSession();
 		return Optional.ofNullable(session.get(c.getClass(), c.getId()))
 				       .map(o -> {session.delete(0); return 1;})
 				       .orElse(0);
 	}
+	@Override
 	public void update(BaseEntity entity) {
 		getSession().update(entity);
 	}
-	public BaseEntity find(Class<? extends BaseEntity> c, Serializable id) {
-		return getSession().get(c, id);
+	@Override
+	public BaseEntity get(Class<? extends BaseEntity> clazz, Serializable id) {
+		return getSession().get(clazz, id);
 	}
 }

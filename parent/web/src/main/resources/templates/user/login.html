@@ -9,9 +9,10 @@
 	<div class="logo-row" data-th-replace="segments/layout :: logoSec"></div>
 	<div>用户登录</div>
 	<hr/>
+	<div class="errormsg" data-th-errors="${form}"></div>
 	<div>
-		<form id="formId" action="#" method="post">
-			<div><label for="emailId">邮箱：</label><input type="email" name="email" id="emailId" placeholder="登录邮箱" style="width: 180px;"/></div>
+		<form id="formId" action="#" data-th-action="@{/login}" method="post" data-th-object="${form}">
+			<div><label for="emailId">邮箱：</label><input type="email" name="email" id="emailId" placeholder="登录邮箱" style="width: 180px;" data-th-field="*{email}"/></div>
 			<div><label for="passwordId">密码：</label><input type="password" name="password" id="passwordId" placeholder="登录密码" style="width: 180px;"/></div>
 			<div><input type="checkbox" name="rememberMe" id="rememberMeId"/><label for="rememberMeId">下次自动登录</label></div>
 			<div><button type="submit" class="btn btn-success">登录</button><button type="button" class="btn btn-xs btn-link">找回密码</button></div>
