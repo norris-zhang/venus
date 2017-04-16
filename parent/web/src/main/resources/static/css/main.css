@@ -184,4 +184,6 @@ h6, .h6 {
 	left: 360px;
 	width: 360px;
 }
-
+.errormsg {
+	color: red;
+}

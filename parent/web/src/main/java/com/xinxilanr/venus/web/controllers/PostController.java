@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  */
 @Controller
-public class PostController {
+public class PostController extends BaseController {
 	@GetMapping("/posts")
 	public String listPosts() {
 		return "post/postlist";

@@ -3,6 +3,7 @@
  */
 package com.xinxilanr.venus.web.controllers;
 
+import static com.xinxilanr.venus.web.session.SessionUser.SESSION_USER_KEY;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -20,15 +21,22 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.xinxilanr.venus.datamodel.User;
 import com.xinxilanr.venus.manager.ClusteredSession;
 import com.xinxilanr.venus.manager.UserManager;
 import com.xinxilanr.venus.manager.dto.RegisterDto;
+import com.xinxilanr.venus.manager.exceptions.LoginNoIdException;
+import com.xinxilanr.venus.manager.exceptions.WrongPasswordException;
 import com.xinxilanr.venus.service.HttpService;
+import com.xinxilanr.venus.web.forms.LoginForm;
 import com.xinxilanr.venus.web.forms.RegisterForm;
 import com.xinxilanr.venus.web.forms.validators.RegisterFormValidator;
+import com.xinxilanr.venus.web.session.SessionUser;
 import com.xinxilanr.venus.web.utils.CookieHandler;
 import com.xinxilanr.venus.web.utils.HttpUtil;
 
@@ -40,7 +48,7 @@ import com.xinxilanr.venus.web.utils.HttpUtil;
  */
 @Controller
 @EnableAutoConfiguration
-public class UserController {
+public class UserController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	private UserManager userManager;
 	private HttpService httpService;
@@ -99,12 +107,43 @@ public class UserController {
 	}
 	
 	@GetMapping("/login")
-	public String login(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response, Model model) {
 		String sessionId = new CookieHandler(request, response).getClusteredSessionId();
 		Map<String, Object> session = sessionRepo.getSession(sessionId);
-		logger.info("Norris: userName = " + session.get("userName"));
-		session.put("userName", "Norris");
-		sessionRepo.setSession(sessionId, session);
-		return "user/login";
+		SessionUser sessionUser = (SessionUser)session.get(SESSION_USER_KEY);
+		if (sessionUser != null) {
+			return contextRedirect("/", model);
+		}
+		model.addAttribute("form", new LoginForm());
+		return new ModelAndView("user/login");
+	}
+	
+	@PostMapping("/login")
+	public ModelAndView login(@Valid @ModelAttribute("form") LoginForm form,
+						BindingResult result,
+						Model model,
+						HttpServletRequest request,
+						HttpServletResponse response) {
+		if (result.hasErrors()) {
+			return new ModelAndView("user/login");
+		}
+		try {
+			User user = userManager.login(form.getEmail(), form.getPassword());
+			String sessionId = new CookieHandler(request, response).getClusteredSessionId();
+			Map<String, Object> session = sessionRepo.getSession(sessionId);
+			session.put(SESSION_USER_KEY, new SessionUser(user));
+			sessionRepo.setSession(sessionId, session);
+			model.addAttribute("csession", session);
+			
+			//update login time
+			userManager.updateUserLoginTime(user.getId(), HttpUtil.getRemoteIp(request));
+			return contextRedirect("/", model);
+		} catch (LoginNoIdException e) {
+			result.reject("error.login.wrongloginid");
+			return new ModelAndView("user/login");
+		} catch (WrongPasswordException e) {
+			result.reject("error.login.wrongpassword");
+			return new ModelAndView("user/login");
+		}
 	}
 }
