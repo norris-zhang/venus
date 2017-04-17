@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<th:block th:include="segments/layout :: head(title='信息栏儿1')"></th:block>
+<link rel="stylesheet" href="css/publish.css"/>
+</head>
+<body>
+<div class="blog-masthead light-font-color" data-th-replace="segments/layout :: header"></div>
+<div class="container">
+	<div class="logo-row" data-th-replace="segments/layout :: logoSec"></div>
+	<div>信息发布</div>
+	<hr/>
+	<div class="publish-form-container">
+		<form action="#" data-th-action="@{/publish}" method="post">
+			<div class="form-group">
+				<label>分　　类</label>
+				<select name="cateParentId" id="cateParentId" class="form-control">
+					<option>房产服务</option>
+					<option>二手市场</option>
+					<option>招聘信息</option>
+					<option>教育培训</option>
+					<option>生活服务</option>
+					<option>旅游酒店</option>
+					<option>法律金融</option>
+					<option>交友活动</option>
+					<option>其它</option>
+				</select>
+				<select name="cateId" id="cateId" class="form-control">
+					<option>买卖房</option>
+					<option>整租房</option>
+					<option>合租房</option>
+					<option>商业房产</option>
+					<option>其它</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>地　　区</label>
+				<select name="regionCity" id="regionCity" class="form-control">
+					<option>奥克兰市(Auckland City)</option>
+					<option>北岸市(Northshore City)</option>
+					<option>豪拉基湾高尔夫群岛(Hauraki Golf Islands)</option>
+					<option>曼努卡市(Manukau City)</option>
+					<option>帕帕库拉(Papakura)</option>
+				</select>
+				<select name="regionSuburb" id="regionSuburb" class="form-control">
+					<option>市中心(Auckland Central)</option>
+					<option>埃文代尔(Avondale)</option>
+					<option>布洛克豪斯湾(Blockhouse Bay)</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>详细地址</label>
+				<input type="text" name="address" class="form-control" placeholder="6 Lovelock Avenue, Mt Eden, Auckland"/>
+			</div>
+			<div class="form-group">
+				<label>标　　题</label>
+				<input type="text" name="title" class="form-control" placeholder="北岸Lifestyle三房"/>
+			</div>
+			<div id="cate-aware-info-property">
+				<div class="form-group">
+					<label>物业类型</label>
+					<select name="propertyType" id="propertyType" class="form-control">
+						<option>住宅(Residential Property)</option>
+						<option>写字楼(Office)</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>上传图片</label>
+				<input type="file" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label>联系人</label>
+				<input type="text" class="form-control" name="contactPerson" placeholder="张先生"/>
+			</div>
+			<div class="form-group">
+				<label>联系电话</label>
+				<input type="text" class="form-control" name="contactNumber" placeholder="021 0263 7833"/>
+			</div>
+			<div class="form-group">
+				<label>邮　　箱</label>
+				<input type="text" class="form-control" name="contactEmail" placeholder="norriszhang@outlook.com"/>
+			</div>
+			<hr/>
+			<div class="form-group publish-button">
+				<button type="submit" class="btn btn-info form-control">发　　布</button>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="blog-footer" data-th-replace="segments/layout :: footer"></div>
+<th:block th:include="segments/layout :: commonJs"></th:block>
+</body>
+</html>
