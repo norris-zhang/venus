@@ -3,6 +3,7 @@
 	margin: 0 100px;
 }
 .publish-button {
-	margin-left: 200px;
-	margin-right: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100px;
 }
