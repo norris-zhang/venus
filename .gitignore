@@ -5,3 +5,9 @@ libraries/EclipseLink 2.5.2/
 
 .recommenders/
 parent/web/*.log
+parent/common/target/
+parent/dao/target/
+parent/datamodel/target/
+parent/manager/target/
+parent/web/nohup.out
+parent/web/target/
