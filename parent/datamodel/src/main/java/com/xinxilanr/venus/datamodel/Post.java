@@ -3,6 +3,7 @@ package com.xinxilanr.venus.datamodel;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -85,6 +87,9 @@ public class Post implements BaseEntity {
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	private User user;
+
+	@OneToMany(mappedBy="post")
+	private List<Picture> pictureList;
 
 	public Post() {
 	}
@@ -256,6 +261,14 @@ public class Post implements BaseEntity {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<Picture> getPictureList() {
+		return pictureList;
+	}
+
+	public void setPictureList(List<Picture> pictureList) {
+		this.pictureList = pictureList;
 	}
 
 }
