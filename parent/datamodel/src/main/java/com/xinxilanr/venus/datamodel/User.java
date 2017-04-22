@@ -71,6 +71,9 @@ public class User implements BaseEntity {
 	@OneToMany(mappedBy="user")
 	private List<Post> posts;
 
+	@OneToMany(mappedBy="user")
+	private List<Picture> pictures;
+
 	@OneToOne(mappedBy="user", cascade=ALL)
 	private Activate activate;
 
@@ -242,6 +245,14 @@ public class User implements BaseEntity {
 
 	public void setActivate(Activate activate) {
 		this.activate = activate;
+	}
+
+	public List<Picture> getPictures() {
+		return pictures;
+	}
+
+	public void setPictures(List<Picture> pictures) {
+		this.pictures = pictures;
 	}
 
 	
