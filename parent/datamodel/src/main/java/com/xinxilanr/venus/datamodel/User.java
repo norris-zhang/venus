@@ -85,8 +85,9 @@ public class User implements BaseEntity {
 		return this.id;
 	}
 
-	public void setId(Long id) {
+	public User setId(Long id) {
 		this.id = id;
+		return this;
 	}
 
 	public Boolean getActive() {

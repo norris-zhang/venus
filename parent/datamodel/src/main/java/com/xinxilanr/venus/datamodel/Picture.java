@@ -47,7 +47,7 @@ public class Picture implements BaseEntity {
 	private int originalDimHeight;
 	@Override
 	public Serializable getId() {
-		return null;
+		return id;
 	}
 	public User getUser() {
 		return user;
