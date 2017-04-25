@@ -2,6 +2,27 @@
 <html>
 <head>
 <th:block th:include="segments/layout :: head(title='用户注册')"></th:block>
+	<style type="text/css">
+		.reg_item
+		{
+			font-size:14px;
+			width:140px;
+			text-align:right;
+			float:left;
+		}
+		
+		.reg_item i
+		{
+			color:red;
+			font-style:normal;
+			margin-right:5px;
+		}
+		
+		li
+		{
+			list-style:none;
+		}
+	</style>
 </head>
 <body>
 <div class="blog-masthead light-font-color" data-th-replace="segments/layout :: header"></div>
@@ -13,12 +34,12 @@
 		<fieldset>
 		<ul>
 			<li>
-				<label for="emailId">邮箱</label><input type="email" name="email" id="emailId" data-th-field="*{email}"/>
+				<label class="reg_item" for="emailId"><i>*</i>邮箱</label><input type="email" name="email" id="emailId" data-th-field="*{email}"/>
 				<span data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}">email error</span>
 			</li>
-			<li><label for="passwordId">密码</label><input type="password" name="password" id="passwordId"/></li>
+			<li><label class="reg_item" for="passwordId"><i>*</i>密码</label><input type="password" name="password" id="passwordId"/></li>
 			<li>
-				<label for="passwordRepeatId">重复密码</label><input type="password" name="passwordRepeat" id="passwordRepeatId"/>
+				<label class="reg_item" for="passwordRepeatId"><i>*</i>重复密码</label><input type="password" name="passwordRepeat" id="passwordRepeatId"/>
 				<span data-th-if="${#fields.hasErrors('passwordRepeat')}" data-th-errors="*{passwordRepeat}">password error</span>
 			</li>
 			<li>
