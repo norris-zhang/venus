@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<th:block th:include="segments/layout :: head(title='File upload')"></th:block>
+<link href="../jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" data-th-href="@{/jquery-file-upload/css/jquery.fileupload.css}"/>
+</head>
+<body>
+<div class="blog-masthead light-font-color" data-th-replace="segments/layout :: header"></div>
+<div class="container">
+	<div class="logo-row" data-th-replace="segments/layout :: logoSec"></div>
+	<div>上传图片</div>
+	<hr/>
+	<!-- The fileinput-button span is used to style the file input field as button -->
+    <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>Add files...</span>
+        <!-- The file input field used as target for the file upload widget -->
+        <input id="fileupload" type="file" name="files[]" multiple="multiple" />
+    </span>
+    <br />
+    <br />
+    <!-- The global progress bar -->
+    <div id="progress" class="progress">
+        <div class="progress-bar progress-bar-success"></div>
+    </div>
+    <!-- The container for the uploaded files -->
+    <div id="files" class="files"></div>
+    <br/>
+</div>
+
+<div class="blog-footer" data-th-replace="segments/layout :: footer"></div>
+<th:block th:include="segments/layout :: commonJs"></th:block>
+
+<script src="../jquery-file-upload/js/vendor/jquery.ui.widget.js" data-th-src="@{/jquery-file-upload/js/vendor/jquery.ui.widget.js}"></script>
+<script src="../jquery-file-upload/js/load-image.all.min.js" data-th-src="@{/jquery-file-upload/js/load-image.all.min.js}"></script>
+<script src="../jquery-file-upload/js/canvas-to-blob.min.js" data-th-src="@{/jquery-file-upload/js/canvas-to-blob.min.js}"></script>
+<script src="../jquery-file-upload/js/jquery.iframe-transport.js" data-th-src="@{/jquery-file-upload/js/jquery.iframe-transport.js}"></script>
+<script src="../jquery-file-upload/js/jquery.fileupload.js" data-th-src="@{/jquery-file-upload/js/jquery.fileupload.js}"></script>
+<script src="../jquery-file-upload/js/jquery.fileupload-process.js" data-th-src="@{/jquery-file-upload/js/jquery.fileupload-process.js}"></script>
+<script src="../jquery-file-upload/js/jquery.fileupload-image.js" data-th-src="@{/jquery-file-upload/js/jquery.fileupload-image.js}"></script>
+<script src="../jquery-file-upload/js/jquery.fileupload-audio.js" data-th-src="@{/jquery-file-upload/js/jquery.fileupload-audio.js}"></script>
+<script src="../jquery-file-upload/js/jquery.fileupload-video.js" data-th-src="@{/jquery-file-upload/js/jquery.fileupload-video.js}"></script>
+<script src="../jquery-file-upload/js/jquery.fileupload-validate.js" data-th-src="@{/jquery-file-upload/js/jquery.fileupload-validate.js}"></script>
+<script src="../jquery-file-upload/js/main.js" data-th-src="@{/jquery-file-upload/js/main.js}"></script>
+<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
+<!--[if (gte IE 8)&(lt IE 10)]>
+<script src="js/cors/jquery.xdr-transport.js"></script>
+<![endif]-->
+</body>
+</html>

@@ -3,18 +3,8 @@
  */
 package com.xinxilanr.venus.manager.impl;
 
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.Assert.assertThat;
-
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.FileVisitOption;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Comparator;
-import java.util.UUID;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,17 +36,12 @@ import mockit.integration.junit4.JMockit;
 public class PictureManagerImplTest {
 	private static PictureDao pictureDao = new PictureDaoMockup();
 	private static PictureManagerImpl pictureManager;
-	private static Path tempDir;
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		tempDir = Paths.get(System.getProperty("user.home"), UUID.randomUUID().toString());
-		if (!tempDir.toFile().exists()) {
-			tempDir.toFile().mkdirs();
-		}
-		pictureManager = new PictureManagerImpl(pictureDao, tempDir.toString());
+		pictureManager = new PictureManagerImpl(pictureDao);
 	}
 
 	/**
@@ -64,10 +49,6 @@ public class PictureManagerImplTest {
 	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		Files.walk(tempDir, FileVisitOption.FOLLOW_LINKS)
-			 .sorted(Comparator.reverseOrder())
-			 .map(Path::toFile)
-			 .forEach(File::delete);
 	}
 
 	/**
@@ -100,7 +81,6 @@ public class PictureManagerImplTest {
 		pictureManager.save(dto);
 		
 		new Verifications() {{pictureDao.insert(withAny(new Picture()));}};
-		assertThat(tempDir.resolve("0/1.jpg").toFile().exists(), equalTo(true));
 	}
 	
 	private static class PictureDaoMockup extends MockUp<PictureDao> implements PictureDao {

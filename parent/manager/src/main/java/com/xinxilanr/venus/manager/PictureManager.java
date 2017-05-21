@@ -12,5 +12,5 @@ import com.xinxilanr.venus.manager.dto.PictureDto;
  *
  */
 public interface PictureManager {
-	void save(PictureDto pictureDto) throws IOException;
+	PictureDto save(PictureDto pictureDto) throws IOException;
 }
