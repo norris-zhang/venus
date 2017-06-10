@@ -16,6 +16,7 @@ public class PictureDto {
 	private String originalFileExt;
 	private PictureType pictureType;
 	private byte[] data;
+	private long pictureId;
 	public long getUserId() {
 		return userId;
 	}
@@ -57,6 +58,12 @@ public class PictureDto {
 	public PictureDto setPostId(Long postId) {
 		this.postId = postId;
 		return this;
+	}
+	public long getPictureId() {
+		return pictureId;
+	}
+	public void setPictureId(long pictureId) {
+		this.pictureId = pictureId;
 	}
 	
 }

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 <title th:text="${title}">insert title</title>
 <!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/bootstrap.min.css" rel="stylesheet" data-th-href="@{/css/bootstrap.min.css}"/>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -15,7 +15,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-<link rel="stylesheet" href="css/main.css"></link>
+<link rel="stylesheet" href="css/main.css" data-th-href="@{/css/main.css}"></link>
 </th:block>
 </head>
 <body>
@@ -30,7 +30,7 @@
 </div>
 <div class="container">
 	<div class="logo-row" data-th-fragment="logoSec">
-		<img alt="" src="images/logo.png" />
+		<img alt="" src="images/logo.png" data-th-src="@{/images/logo.png}"/>
 		<div class="search-bar">
 			<form action="#" method="get">
 				<div class="input-group">
@@ -195,9 +195,9 @@
 </div>
 <th:block th:fragment="commonJs">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery-3.2.0.min.js"></script>
+<script src="js/jquery-3.2.0.min.js" data-th-src="@{/js/jquery-3.2.0.min.js}"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js" data-th-src="@{/js/bootstrap.min.js}"></script>
 </th:block>
 </body>
 </html>
